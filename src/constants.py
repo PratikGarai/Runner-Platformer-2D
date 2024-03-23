@@ -7,4 +7,4 @@ RESOURCE_ROOT = os.path.join(".", "resources")
 ASSETS_ROOT = os.path.join(RESOURCE_ROOT, "assets")
 BACKGROUND_ROOT = os.path.join(ASSETS_ROOT, "backgrounds")
 
-BACKGROUND_SHIFT_PER_FRAME = 1
+BACKGROUND_SHIFT_PER_FRAME = 3
