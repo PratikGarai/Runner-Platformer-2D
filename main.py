@@ -7,7 +7,7 @@ from src.constants import GAME_X, GAME_Y
 
 if __name__ == "__main__":
     pygame.init()
-    pygame.display.set_caption("Sample Game")
+    pygame.display.set_caption("Runner Game")
     screen = pygame.display.set_mode((GAME_X, GAME_Y))
     clock = pygame.time.Clock()
 
