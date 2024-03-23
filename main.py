@@ -1,8 +1,9 @@
 import pygame
 
 from src.base import BaseComponent
+from src.components.player import Player
+from src.components.scene import Scene
 from src.constants import GAME_X, GAME_Y
-from src.scene import Scene
 
 if __name__ == "__main__":
     pygame.init()
@@ -12,8 +13,10 @@ if __name__ == "__main__":
 
     # Loading Components
     SCENE = Scene(screen=screen)
+    PLAYER = Player(screen=screen, ground_offset=SCENE.ground_y_offset)
     components: list[BaseComponent] = [
-        SCENE
+        SCENE,
+        PLAYER
     ]
 
     while True:
