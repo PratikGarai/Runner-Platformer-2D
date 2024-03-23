@@ -2,6 +2,7 @@ import os
 
 import pygame
 from pygame import Surface
+from src.base import BaseComponent
 
 from src.constants import BACKGROUND_ROOT, GAME_X, GAME_Y
 
@@ -10,9 +11,9 @@ BACKGROUND_GROUND_SHIFT_PER_FRAME = 3
 GROUND_MAX_HEIGHT = 100
 
 
-class Scene:
+class Scene(BaseComponent):
     def __init__(self, screen: Surface):
-        self.screen = screen
+        super().__init__(screen)
 
         # Load Sky
         self.sky_surface_1 = pygame.image.load(
