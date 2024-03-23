@@ -1,14 +1,18 @@
+import os
+
 import pygame
 
-if __name__=="__main__":
+from src.constants import BACKGROUND_ROOT, GAME_X, GAME_Y
+
+if __name__ == "__main__":
     pygame.init()
     pygame.display.set_caption("Sample Game")
-    screen = pygame.display.set_mode((800, 400))
+    screen = pygame.display.set_mode((GAME_X, GAME_Y))
     clock = pygame.time.Clock()
 
-
-    test_surface = pygame.Surface((100, 100))
-    test_surface.fill((255, 0, 0))
+    back_surface = pygame.image.load(os.path.join(BACKGROUND_ROOT, "background.png"))
+    back_surface = pygame.transform.scale(
+        back_surface, (GAME_X, GAME_Y))
 
     while True:
         for event in pygame.event.get():
@@ -16,7 +20,7 @@ if __name__=="__main__":
                 pygame.quit()
                 exit()
 
-        screen.blit(test_surface, (50, 100))
+        screen.blit(back_surface, (0, 0))
 
         pygame.display.update()
         clock.tick(60)
