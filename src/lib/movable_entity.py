@@ -24,6 +24,8 @@ class MovableEntity(BaseComponent):
     def update(self):
         if self.current_roller:
             entity_sprite = self.current_roller.get_sprite()
+            self.entity_x_offset += self.entity_x_speed
+            self.entity_y_offset += self.entity_y_speed
             x_pos = self.entity_x_offset
             y_pos = GAME_Y - self.entity_y_offset - self.height
 

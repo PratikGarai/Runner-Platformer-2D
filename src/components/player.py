@@ -2,8 +2,8 @@ import os
 
 from pygame import Surface
 
-from src.components.movable_entity import MovableEntity
-from src.constants import GAME_Y, PLAYER_ROOT
+from src.lib.movable_entity import MovableEntity
+from src.constants import PLAYER_ROOT
 from src.lib.sprite_roller import SpriteRoller
 
 PLAYER_SKIP_FRAME = 5
