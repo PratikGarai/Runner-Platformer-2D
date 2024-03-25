@@ -19,11 +19,16 @@ class Game:
         self.screen = pygame.display.set_mode((GAME_X, GAME_Y))
         self.clock = pygame.time.Clock()
 
+        # Data
+        self.mobs: dict[str, MovableEntity] = {}
+        self.mob_count = 0
+        self.score = 0
+
+        # Components
         self.SCENE = Scene(screen=self.screen)
         self.PLAYER = Player(screen=self.screen,
                              ground_offset=self.SCENE.ground_y_offset)
-        self.mobs: dict[str, MovableEntity] = {}
-        self.mob_count = 0
+        self.SCORE_FONT = pygame.font.Font(None, 50)
 
     def create_new_random_mob(self,) -> tuple[str, MovableEntity]:
         mob: type[MovableEntity] = random.choice([Rat, Bird])
@@ -37,6 +42,7 @@ class Game:
             if mob.pos_rect.right < 0:
                 mobs_to_delete.append(id)
                 self.mob_count -= 1
+                self.score += 1
 
         for id in mobs_to_delete:
             # print(f"Deleteing mob id {id}")
@@ -59,17 +65,23 @@ class Game:
         pygame.display.set_caption(self.name)
 
         while True:
+            # Update screen, player and score
             self.SCENE.update()
             self.PLAYER.update()
+            score_text = self.SCORE_FONT.render(f"Score : {self.score}", False, (0, 0, 0))
+            score_rect = score_text.get_rect(topright = (GAME_X-10, 10))
+            self.screen.blit(score_text, score_rect)
 
+            # Check for mob updates and collisions
             for mob in self.mobs.values():
                 mob.update()
             self.check_and_update_mobs()
             collision = self.check_collisions()
             if collision:
                 print("Game Over")
+                print(f"Total Score : {self.score}")
                 exit()
-
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
