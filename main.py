@@ -48,6 +48,13 @@ class Game:
             self.mob_count += 1
             # print(f"Created mob id {id}")
 
+    def check_collisions(self) -> bool:
+        for id, mob in self.mobs.items():
+            if self.PLAYER.pos_rect.colliderect(mob.pos_rect):
+                print(f"Crashed with mob {id}")
+                return True
+        return False
+
     def play(self):
         pygame.display.set_caption(self.name)
 
@@ -58,6 +65,10 @@ class Game:
             for mob in self.mobs.values():
                 mob.update()
             self.check_and_update_mobs()
+            collision = self.check_collisions()
+            if collision:
+                print("Game Over")
+                exit()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
