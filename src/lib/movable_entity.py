@@ -9,10 +9,10 @@ class MovableEntity(BaseComponent):
         super().__init__(screen)
 
         self.current_roller: SpriteRoller | None = None
-        self.entity_x_mid = initial_x_mid
-        self.entity_y_end = initial_y_end
-        self.entity_x_speed = 0
-        self.entity_y_speed = 0
+        self.entity_x_mid: float = initial_x_mid
+        self.entity_y_end: float = initial_y_end
+        self.entity_x_speed:float = 0
+        self.entity_y_speed:float = 0
 
     def update(self):
         if self.current_roller:
@@ -20,5 +20,6 @@ class MovableEntity(BaseComponent):
             self.entity_x_mid += self.entity_x_speed
             self.entity_y_end += self.entity_y_speed
             pos_rect = entity_sprite.get_rect()
-            pos_rect.midbottom = (self.entity_x_mid, self.entity_y_end)
+            pos_rect.midbottom = (int(self.entity_x_mid),
+                                  int(self.entity_y_end))
             self.screen.blit(entity_sprite, pos_rect)

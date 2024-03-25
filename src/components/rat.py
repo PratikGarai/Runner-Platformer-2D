@@ -27,7 +27,7 @@ RUN_ROLLER_CONFIG.update_after_frames = 3
 class Rat(MovableEntity):
     def __init__(self, screen: Surface, ground_offset: int):
         super().__init__(screen, RAT_X_OFFSET, GAME_Y-ground_offset)
-        self.entity_x_speed = -1
+        self.entity_x_speed = -10
         self.entity_y_speed = 0
         self.run_roller = SpriteRoller(config=RUN_ROLLER_CONFIG)
         self.current_roller = self.run_roller

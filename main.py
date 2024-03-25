@@ -4,7 +4,7 @@ from src.base import BaseComponent
 from src.components.player import Player
 from src.components.scene import Scene
 from src.components.rat import Rat
-from src.constants import GAME_X, GAME_Y
+from src.constants import GAME_X, GAME_Y, PLAYER_JUMP_POWER
 
 if __name__ == "__main__":
     pygame.init()
@@ -35,7 +35,7 @@ if __name__ == "__main__":
                 if event.key == pygame.K_LEFT :
                     PLAYER.current_roller.config.flip_x = not PLAYER.current_roller.config.flip_x
                 if event.key == pygame.K_UP :
-                    PLAYER.current_roller.config.scale_factor += 0.1
+                    PLAYER.jump(PLAYER_JUMP_POWER)
 
         pygame.display.update()
         clock.tick(60)
