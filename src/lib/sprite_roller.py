@@ -17,6 +17,8 @@ class SpriteRollerConfig:
     pad_left: int = 0
     pad_right: int = 0
 
+    update_after_frames: int = 0
+
 
 def validate_configs(config: SpriteRollerConfig):
     assert config.path, "Roller path can't be empty"
@@ -25,6 +27,7 @@ def validate_configs(config: SpriteRollerConfig):
     assert config.height != 0, "Roller height should be nonzero"
     assert config.stride != 0, "Roller stride should be nonzero"
     assert config.scale_factor != 0.0, "Roller scale factor should be nonzero"
+    assert config.update_after_frames != 0, "Roller update_after_frames should be nonzero"
 
 
 class SpriteRoller:
@@ -37,6 +40,7 @@ class SpriteRoller:
         self.height = self.config.height
         self.stride = self.config.stride
         self.step = 0
+        self.frames = 0
 
         # Load the image
         self.surface = pygame.image.load(self.path)
@@ -45,20 +49,26 @@ class SpriteRoller:
         surface_x, surface_y = self.surface.get_size()
         self.max_steps = surface_x//self.stride
 
-    def get_sprite(self) -> Surface:
-        # Flips
-        res = pygame.transform.flip(
-            self.surface, flip_x=self.config.flip_x, flip_y=self.config.flip_y)
+    def get_sprite(self, count_frames=True) -> Surface:
+        if count_frames:
+            self.frames += 1
+            if self.frames % self.config.update_after_frames == 0:
+                self.frames = 0
+                self.update()
 
         # Extract sprite frame
-        res = res.subsurface(
+        res = self.surface.subsurface(
             (self.step*self.stride, 0, self.stride, self.height))
 
         # Remove Sprite Padding
         res_x, res_y = res.get_size()
         res = res.subsurface((self.config.pad_left, self.config.pad_top, res_x-self.config.pad_left -
-                                      self.config.pad_right, res_y-self.config.pad_top-self.config.pad_bottom))
-    
+                              self.config.pad_right, res_y-self.config.pad_top-self.config.pad_bottom))
+
+        # Flips
+        res = pygame.transform.flip(
+            res, flip_x=self.config.flip_x, flip_y=self.config.flip_y)
+
         # Scaling
         res = pygame.transform.scale_by(
             res, factor=self.config.scale_factor)

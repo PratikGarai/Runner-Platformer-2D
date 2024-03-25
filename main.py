@@ -34,6 +34,8 @@ if __name__ == "__main__":
             if event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_LEFT :
                     PLAYER.current_roller.config.flip_x = not PLAYER.current_roller.config.flip_x
+                if event.key == pygame.K_UP :
+                    PLAYER.current_roller.config.scale_factor += 0.1
 
         pygame.display.update()
         clock.tick(60)
