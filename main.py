@@ -31,5 +31,9 @@ if __name__ == "__main__":
                 pygame.quit()
                 exit()
 
+            if event.type == pygame.KEYDOWN :
+                if event.key == pygame.K_LEFT :
+                    PLAYER.current_roller.config.flip_x = not PLAYER.current_roller.config.flip_x
+
         pygame.display.update()
         clock.tick(60)

@@ -6,11 +6,8 @@ from src.lib.sprite_roller import SpriteRoller
 
 
 class MovableEntity(BaseComponent):
-    def __init__(self, screen: Surface, height: int, stride: int, initial_x: int, initial_y: int, initial_x_speed: int, initial_y_speed: int, update_rate: int):
+    def __init__(self, screen: Surface, initial_x: int, initial_y: int, initial_x_speed: int, initial_y_speed: int, update_rate: int):
         super().__init__(screen)
-
-        self.height = height
-        self.stride = stride
 
         self.current_roller: SpriteRoller | None = None
         self.frame = 0
@@ -24,10 +21,11 @@ class MovableEntity(BaseComponent):
     def update(self):
         if self.current_roller:
             entity_sprite = self.current_roller.get_sprite()
+            width, height = entity_sprite.get_size()
             self.entity_x_offset += self.entity_x_speed
             self.entity_y_offset += self.entity_y_speed
             x_pos = self.entity_x_offset
-            y_pos = GAME_Y - self.entity_y_offset - self.height
+            y_pos = GAME_Y - self.entity_y_offset - height
 
             self.screen.blit(entity_sprite, (x_pos, y_pos))
             self.frame += 1
