@@ -2,7 +2,7 @@ import os
 
 from pygame import Surface
 
-from src.constants import GAME_Y, PLAYER_ROOT
+from src.lib.constants import GAME_Y, PLAYER_ROOT
 from src.lib.jumpable_entity import JumpableEntity
 from src.lib.sprite_roller import SpriteRoller, SpriteRollerConfig
 

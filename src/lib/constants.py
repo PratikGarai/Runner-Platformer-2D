@@ -10,6 +10,7 @@ ASSETS_ROOT = os.path.join(RESOURCE_ROOT, "assets")
 BACKGROUND_ROOT = os.path.join(ASSETS_ROOT, "backgrounds")
 PLAYER_ROOT = os.path.join(ASSETS_ROOT, "player")
 RAT_ROOT = os.path.join(ASSETS_ROOT, "rat")
+BIRD_ROOT = os.path.join(ASSETS_ROOT, "bird")
 
 # Physics
 GRAVITY = 1

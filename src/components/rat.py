@@ -2,7 +2,7 @@ import os
 
 from pygame import Surface
 
-from src.constants import GAME_X, GAME_Y, RAT_ROOT
+from src.lib.constants import GAME_X, GAME_Y, RAT_ROOT
 from src.lib.movable_entity import MovableEntity
 from src.lib.sprite_roller import SpriteRoller, SpriteRollerConfig
 

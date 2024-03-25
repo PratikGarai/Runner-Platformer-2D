@@ -1,6 +1,6 @@
 from pygame import Surface
 
-from src.constants import GRAVITY
+from src.lib.constants import GRAVITY
 from src.lib.movable_entity import MovableEntity
 
 
