@@ -40,8 +40,8 @@ class Player(JumpableEntity):
         self.current_roller = self.run_roller
 
     def update(self):
-        if self.is_jump_active : 
+        if self.is_jump_active:
             self.current_roller = self.jump_roller
-        else : 
+        else:
             self.current_roller = self.run_roller
         return super().update()

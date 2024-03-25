@@ -2,8 +2,8 @@ import os
 
 import pygame
 from pygame import Surface
-from src.base import BaseComponent
 
+from src.base import BaseComponent
 from src.constants import BACKGROUND_ROOT, GAME_X, GAME_Y
 
 BACKGROUND_SKY_SHIFT_PER_FRAME = 2

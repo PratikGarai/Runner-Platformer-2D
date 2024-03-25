@@ -32,8 +32,6 @@ if __name__ == "__main__":
                 exit()
 
             if event.type == pygame.KEYDOWN :
-                if event.key == pygame.K_LEFT :
-                    PLAYER.current_roller.config.flip_x = not PLAYER.current_roller.config.flip_x
                 if event.key == pygame.K_UP :
                     PLAYER.jump(PLAYER_JUMP_POWER)
 

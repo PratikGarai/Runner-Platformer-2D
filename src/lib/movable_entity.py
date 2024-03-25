@@ -11,8 +11,8 @@ class MovableEntity(BaseComponent):
         self.current_roller: SpriteRoller | None = None
         self.entity_x_mid: float = initial_x_mid
         self.entity_y_end: float = initial_y_end
-        self.entity_x_speed:float = 0
-        self.entity_y_speed:float = 0
+        self.entity_x_speed: float = 0
+        self.entity_y_speed: float = 0
 
     def update(self):
         if self.current_roller:
