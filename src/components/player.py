@@ -2,8 +2,9 @@ import os
 
 from pygame import Surface
 
-from src.lib.constants import GAME_Y, PLAYER_ROOT
-from src.lib.jumpable_entity import JumpableEntity
+from src.components.scene import Scene
+from src.lib.constants import PLAYER_ROOT
+from src.lib.entity.jumpable_entity import JumpableEntity
 from src.lib.sprite_roller import SpriteRoller, SpriteRollerConfig
 
 PLAYER_X_OFFSET = 50
@@ -31,13 +32,15 @@ JUMP_ROLLER_CONFIG.update_after_frames = 5
 
 
 class Player(JumpableEntity):
-    def __init__(self, screen: Surface, ground_offset: int):
-        super().__init__(screen, PLAYER_X_OFFSET, GAME_Y-ground_offset)
+    def __init__(self, screen: Surface, scene: Scene):
+        super().__init__(screen, scene, PLAYER_X_OFFSET, scene.ground_surface_1_rect.top)
+        print(scene.ground_surface_1_rect.top)
         self.entity_x_speed = 0
         self.entity_y_speed = 0
         self.run_roller = SpriteRoller(config=RUN_ROLLER_CONFIG)
         self.jump_roller = SpriteRoller(config=JUMP_ROLLER_CONFIG)
         self.current_roller = self.run_roller
+        print(self.pos_rect)
 
     def update(self):
         if self.is_jump_active:

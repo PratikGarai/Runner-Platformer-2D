@@ -1,12 +1,14 @@
 from pygame import Rect, Surface
 
 from src.components.base import BaseComponent
+from src.components.scene import Scene
 from src.lib.sprite_roller import SpriteRoller
 
 
 class MovableEntity(BaseComponent):
-    def __init__(self, screen: Surface, initial_x_mid: int, initial_y_end: int):
+    def __init__(self, screen: Surface, scene: Scene, initial_x_mid: int, initial_y_end: int):
         super().__init__(screen)
+        self.scene = scene
 
         self.current_roller: SpriteRoller | None = None
         self.entity_x_mid: float = initial_x_mid
@@ -24,5 +26,5 @@ class MovableEntity(BaseComponent):
             self.entity_y_end += self.entity_y_speed
             self.pos_rect = entity_sprite.get_rect()
             self.pos_rect.midbottom = (int(self.entity_x_mid),
-                                  int(self.entity_y_end))
+                                       int(self.entity_y_end))
             self.screen.blit(entity_sprite, self.pos_rect)

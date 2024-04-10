@@ -8,7 +8,7 @@ from src.components.player import Player
 from src.components.rat import Rat
 from src.components.scene import Scene
 from src.lib.constants import GAME_X, GAME_Y, PLAYER_JUMP_POWER
-from src.lib.movable_entity import MovableEntity
+from src.lib.entity.movable_entity import MovableEntity
 
 
 class Game:
@@ -26,14 +26,13 @@ class Game:
 
         # Components
         self.SCENE = Scene(screen=self.screen)
-        self.PLAYER = Player(screen=self.screen,
-                             ground_offset=self.SCENE.ground_y_offset)
+        self.PLAYER = Player(screen=self.screen, scene=self.SCENE)
         self.SCORE_FONT = pygame.font.Font(None, 50)
 
     def create_new_random_mob(self,) -> tuple[str, MovableEntity]:
         mob: type[MovableEntity] = random.choice([Rat, Bird])
         id = str(uuid.uuid4())
-        return id, mob(screen=self.screen, ground_offset=self.SCENE.ground_y_offset)
+        return id, mob(screen=self.screen, scene=self.SCENE)
 
     def check_and_update_mobs(self):
         mobs_to_delete = []
@@ -68,8 +67,9 @@ class Game:
             # Update screen, player and score
             self.SCENE.update()
             self.PLAYER.update()
-            score_text = self.SCORE_FONT.render(f"Score : {self.score}", False, (0, 0, 0))
-            score_rect = score_text.get_rect(topright = (GAME_X-10, 10))
+            score_text = self.SCORE_FONT.render(
+                f"Score : {self.score}", False, (0, 0, 0))
+            score_rect = score_text.get_rect(topright=(GAME_X-10, 10))
             self.screen.blit(score_text, score_rect)
 
             # Check for mob updates and collisions
@@ -81,7 +81,7 @@ class Game:
                 print("Game Over")
                 print(f"Total Score : {self.score}")
                 exit()
-            
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()

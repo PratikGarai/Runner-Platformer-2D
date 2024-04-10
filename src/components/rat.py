@@ -2,8 +2,9 @@ import os
 
 from pygame import Surface
 
-from src.lib.constants import GAME_X, GAME_Y, RAT_ROOT
-from src.lib.movable_entity import MovableEntity
+from src.components.scene import Scene
+from src.lib.constants import GAME_X, RAT_ROOT
+from src.lib.entity.movable_entity import MovableEntity
 from src.lib.sprite_roller import SpriteRoller, SpriteRollerConfig
 
 RAT_X_OFFSET = GAME_X
@@ -25,8 +26,8 @@ RUN_ROLLER_CONFIG.update_after_frames = 3
 
 
 class Rat(MovableEntity):
-    def __init__(self, screen: Surface, ground_offset: int):
-        super().__init__(screen, RAT_X_OFFSET, GAME_Y-ground_offset)
+    def __init__(self, screen: Surface, scene: Scene):
+        super().__init__(screen, scene, RAT_X_OFFSET, scene.ground_surface_1_rect.top)
         self.entity_x_speed = -10
         self.entity_y_speed = 0
         self.run_roller = SpriteRoller(config=RUN_ROLLER_CONFIG)

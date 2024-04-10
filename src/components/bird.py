@@ -2,8 +2,9 @@ import os
 
 from pygame import Surface
 
-from src.lib.constants import BIRD_ROOT, GAME_X, GAME_Y
-from src.lib.movable_entity import MovableEntity
+from src.components.scene import Scene
+from src.lib.constants import BIRD_ROOT, GAME_X
+from src.lib.entity.movable_entity import MovableEntity
 from src.lib.sprite_roller import SpriteRoller, SpriteRollerConfig
 
 BIRD_X_OFFSET = GAME_X
@@ -27,8 +28,9 @@ RUN_ROLLER_CONFIG.update_after_frames = 3
 
 
 class Bird(MovableEntity):
-    def __init__(self, screen: Surface, ground_offset: int):
-        super().__init__(screen, BIRD_X_OFFSET, GAME_Y-ground_offset-BIRD_FLIGHT_HEIGHT)
+    def __init__(self, screen: Surface, scene: Scene):
+        super().__init__(screen, scene, BIRD_X_OFFSET,
+                         scene.ground_surface_1_rect.top-BIRD_FLIGHT_HEIGHT)
         self.entity_x_speed = -12
         self.entity_y_speed = 0
         self.run_roller = SpriteRoller(config=RUN_ROLLER_CONFIG)
