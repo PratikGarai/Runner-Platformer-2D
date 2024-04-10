@@ -34,13 +34,11 @@ JUMP_ROLLER_CONFIG.update_after_frames = 5
 class Player(JumpableEntity):
     def __init__(self, screen: Surface, scene: Scene):
         super().__init__(screen, scene, PLAYER_X_OFFSET, scene.ground_surface_1_rect.top)
-        print(scene.ground_surface_1_rect.top)
         self.entity_x_speed = 0
         self.entity_y_speed = 0
         self.run_roller = SpriteRoller(config=RUN_ROLLER_CONFIG)
         self.jump_roller = SpriteRoller(config=JUMP_ROLLER_CONFIG)
         self.current_roller = self.run_roller
-        print(self.pos_rect)
 
     def update(self):
         if self.is_jump_active:
