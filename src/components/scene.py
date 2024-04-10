@@ -33,15 +33,15 @@ class Scene(BaseComponent):
 
         self.sky_x = 0
         self.ground_x = 0
-        self.ground_1_height = GROUND_MAX_HEIGHT
-        self.ground_2_height = GROUND_MAX_HEIGHT
+        self.ground_1_height = ground_y
+        self.ground_2_height = ground_y
 
         self.ground_surface_1_rect = self.ground_surface_1.get_rect()
         self.ground_surface_2_rect = self.ground_surface_2.get_rect()
         self.ground_surface_1_rect.left = self.ground_x
-        self.ground_surface_1_rect.bottom = GAME_Y
+        self.ground_surface_1_rect.bottom = GAME_Y + (self.ground_1_height - GROUND_MAX_HEIGHT)
         self.ground_surface_2_rect.left = self.ground_x + GAME_X
-        self.ground_surface_2_rect.bottom = GAME_Y
+        self.ground_surface_2_rect.bottom = GAME_Y + (self.ground_1_height - GROUND_MAX_HEIGHT)
 
     def update(self):
         self.sky_x -= BACKGROUND_SKY_SHIFT_PER_FRAME
@@ -51,9 +51,9 @@ class Scene(BaseComponent):
         self.screen.blit(self.sky_surface_2, (self.sky_x + GAME_X, 0))
 
         self.ground_surface_1_rect.left = self.ground_x
-        self.ground_surface_1_rect.bottom = GAME_Y
+        self.ground_surface_1_rect.bottom = GAME_Y + (self.ground_1_height - GROUND_MAX_HEIGHT)
         self.ground_surface_2_rect.left = self.ground_x + GAME_X
-        self.ground_surface_2_rect.bottom = GAME_Y
+        self.ground_surface_2_rect.bottom = GAME_Y + (self.ground_1_height - GROUND_MAX_HEIGHT)
         self.screen.blit(self.ground_surface_1,
                          self.ground_surface_1_rect)
         self.screen.blit(self.ground_surface_2,
