@@ -2,10 +2,11 @@
 
 2D platformer developed using PyGame.
 
-<video src='./resources/Platformer Demo.mp4' width=400></video>
+## Demo
+[Demo Video](./resources/Platformer%20Demo.mp4)
 
 
-# Asset Credits
+## Asset Credits
 
 - [Player sprite](https://craftpix.net/freebies/free-fantasy-chibi-male-sprites-pixel-art/)
 - [Background Sprite](https://craftpix.net/freebies/ocean-and-clouds-free-pixel-art-backgrounds/)
