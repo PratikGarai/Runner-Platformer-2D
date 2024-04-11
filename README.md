@@ -1,6 +1,8 @@
 # Runner Platformer
 
-2D platformer developed using PyGame. WIP.
+2D platformer developed using PyGame.
+
+![Demo Video](./resources/Platformer%20Demo.mp4)
 
 
 # Asset Credits
