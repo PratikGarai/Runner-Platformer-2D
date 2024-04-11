@@ -2,7 +2,7 @@
 
 2D platformer developed using PyGame.
 
-![Demo Video](./resources/Platformer%20Demo.mp4)
+<video src='./resources/Platformer Demo.mp4' width=400></video>
 
 
 # Asset Credits
